@@ -1,5 +1,5 @@
-# Learning to navigate by distilling visual information and natural language instructions
-Tensorflow code for ICLR 2018 submission https://openreview.net/forum?id=HJPSN3gRW&noteId=HJPSN3gRW
+# Attention Based Natural Language Grounding by Navigating Virtual Environment
+Tensorflow code for our **WACV 2019** paper 
 
 ## 1) Usage
 This code is based on [TensorFlow](https://www.tensorflow.org/). Please install it by following the instructions mentioned in TF website. [moviepy](https://pypi.python.org/pypi/moviepy) is a pre-requisite for storing GIFs.
@@ -11,9 +11,13 @@ game_Env.py is the code for the new customizable 2D environment introduced in th
 
 objects.json contains the specification of number and types of objects/obstacles. 
 
+objects_new.json contains new increased number of objects. 
+
 generateSentence.py - generates the feasible sentences for a given episode based on the environment configuration. 
 
 vocab.txt - lists the possible unique words present in instructions. 
+
+vocab_new.txt - increased vocabulary with new objects and new words present in instructions.
 
 gifs directory contains some GIFs that were saved when we trained our attention architecture with n=5.
 
@@ -24,8 +28,10 @@ Our implementation can be trained on a GPU. Please specify the GPU using CUDA_VI
 ```
 CUDA_VISIBLE_DEVICES="1" python main.py 
 ```
+## 4) How to generate Attention Maps?
+Run generateAttentionGifs.py to generate multiple gifs corresponding to the evolution of game state as well as of different attention maps in an episode. Extract out any single frame from those gifs(we used Preview app in mac). Once the images have been extracted, edit the location of the images(original and the attention map) in the Mask_Map.py code and run it to get the final mask. A sample extracted image of original state(orig.png), attention map(1.png) and the corresponding mask(1_masked.png) have also been uploaded.  
 
-## 4) Sample depiction of trained agent
+## 5) Sample depiction of trained agent
 Natural language instruction is: "There are multiple green apple. Go to larger one."
 
 First gif shows the agent's trajectory as it navigates to the large green apple. 
@@ -36,7 +42,11 @@ Second gif shows the egocentric view as observed by the agent at every step in i
 
 gifs directory contain additional GIFs that were saved when we trained our attention architecture with n=5.
 
-## 5) Acknowledgement
+## 6) 3D results 
+
+To replicate the 3D results go this link https://github.com/rl-lang-grounding/DeepRL-Grounding
+
+## 7) Acknowledgement
 A3C implementation is based on open source implementation of [Arthur Juliani](https://github.com/awjuliani/DeepRL-Agents)
 
 
